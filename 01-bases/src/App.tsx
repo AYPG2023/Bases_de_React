@@ -2,7 +2,7 @@
 //import ObjectLiterals from "./typescript/ObjectLiterals";
 // import BasicFunctions from "./typescript/BasicFunctions";
 
-import { Counter } from "./components/Counter";
+//import { Counter } from "./components/Counter";
 
 function App() {
   return (
