@@ -1,52 +1,77 @@
-import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 enum AuthStatus {
-    'checking',
-    'authenticated',
-    'notAuthenticated'
+  "checking",
+  "authenticated",
+  "notAuthenticated",
 }
 
 interface AuthState {
-    status: AuthStatus;
-    token?: string;
+  status: AuthStatus;
+  token?: string;
 
-    user?: User
-    isChecking: boolean;
-    isAuthenticated: boolean;
+  user?: User;
+  isChecking: boolean;
+  isAuthenticated: boolean;
+
+  // Como definir los metodos
+  loginWithEmailPassword: (email: string, password: string) => void;
+  logout: () => void;
 }
 
 interface User {
-    name: string;
-    email: string;
-
+  name: string;
+  email: string;
 }
 export const AuthContext = createContext({} as AuthState);
 
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
+  const [status, setstatus] = useState(AuthStatus.checking);
 
-    const [status, setstatus] = useState(AuthStatus.checking);
+  const [user, setUser] = useState<User>();
 
-    useEffect(() => {
+  useEffect(() => {
+    setTimeout(() => {
+      setstatus(AuthStatus.notAuthenticated);
+    }, 1500);
+  }, []);
 
-        setTimeout(() => {
-            setstatus(AuthStatus.notAuthenticated)
-        }, 1500)
+  const loginWithEmailPassword = (email: string, password: string) => {
+    setUser({
+      name: "Anderson Perdomo",
+      email: email,
+    });
+    setstatus(AuthStatus.authenticated);
+  };
 
-    }, [])
+  const logout = () => {
+    setUser(undefined);
+    setstatus(AuthStatus.notAuthenticated);
+  };
 
+  return (
+    <AuthContext.Provider
+      value={{
+        status: status, // 'authenticated' | 'not-authenticated'
+        user: user,
 
-    return (
+        isChecking: status === AuthStatus.checking,
+        isAuthenticated: status === AuthStatus.authenticated,
 
-        <AuthContext.Provider value={{
-            status: status, // 'authenticated' | 'not-authenticated'
-
-            isChecking: status === AuthStatus.checking,
-            isAuthenticated: status === AuthStatus.authenticated,
-        }}>
-            {children}
-        </AuthContext.Provider >
-    )
-}
-
+        // Esto es un metodo
+        loginWithEmailPassword,
+        logout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
