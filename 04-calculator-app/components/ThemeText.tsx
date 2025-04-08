@@ -1,19 +1,17 @@
-import { Text, TextProps } from "react-native";
-import React from "react";
 import { globalStyles } from "@/styles/global-styles";
+import { Text, type TextProps } from "react-native";
 
 interface Props extends TextProps {
   variant?: "h1" | "h2";
-  children: React.ReactNode;
 }
 
-const ThemeText: React.FC<Props> = ({ children, variant = "h1", ...rest }) => {
+const ThemeText = ({ children, variant = "h1", ...rest }: Props) => {
   return (
     <Text
       style={[
         { color: "white", fontFamily: "SpaceMono" },
-        variant === "h1" && globalStyles.mainResul,
-        variant === "h2" && globalStyles.subResul,
+        variant === "h1" && globalStyles.mainResult,
+        variant === "h2" && globalStyles.subResult,
       ]}
       numberOfLines={1}
       adjustsFontSizeToFit
@@ -23,5 +21,4 @@ const ThemeText: React.FC<Props> = ({ children, variant = "h1", ...rest }) => {
     </Text>
   );
 };
-
 export default ThemeText;
