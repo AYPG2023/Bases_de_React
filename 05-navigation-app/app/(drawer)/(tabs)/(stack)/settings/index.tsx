@@ -11,9 +11,9 @@ const SettingsScreen = () => {
         <CustomButton
           className="mb-4"
           color="primary"
-          onPress={() => router.push("/tabs/(stack)/home")}
+          onPress={() => router.push("/home")}
         >
-          Dashoboard
+          Dashboard
         </CustomButton>
       </View>
     </SafeAreaView>

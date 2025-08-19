@@ -2,7 +2,7 @@ import { Redirect, Href } from "expo-router";
 import { View, Text, SafeAreaView } from "react-native";
 
 const App = () => {
-  const route = "/drawer" as Href;
+  const route = "/home" as Href;
   return <Redirect href={route}></Redirect>;
   // return (
   //   <SafeAreaView>
