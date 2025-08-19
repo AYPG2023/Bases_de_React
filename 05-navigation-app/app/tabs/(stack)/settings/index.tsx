@@ -11,7 +11,7 @@ const SettingsScreen = () => {
         <CustomButton
           className="mb-4"
           color="primary"
-          onPress={() => router.push("/home")}
+          onPress={() => router.push("/tabs/(stack)/home")}
         >
           Dashoboard
         </CustomButton>

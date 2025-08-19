@@ -1,26 +1,41 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
+import Ionicons from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
 import { View, Text } from "react-native";
 import React from "react";
 
 const TabsLayout = () => {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "blue" }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "indigo",
+        headerShown: false,
+      }}
+    >
       <Tabs.Screen
-        name="home"
+        name="(stack)"
         options={{
-          title: "Home",
+          title: "Stack",
           tabBarIcon: ({ color }) => (
-            <FontAwesome name="home" size={24} color={color} />
+            <Ionicons name="user-plus" size={24} color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="home/index"
+        options={{
+          title: "Home Screen",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="home" size={24} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="favorites"
+        name="favorites/index"
         options={{
           title: "Favoritos",
           tabBarIcon: ({ color }) => (
-            <FontAwesome name="heart" size={24} color={color} />
+            <Ionicons size={24} name="star" color={color} />
           ),
         }}
       />

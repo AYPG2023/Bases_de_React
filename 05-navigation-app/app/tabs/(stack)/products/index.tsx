@@ -18,7 +18,7 @@ const ProductsScreen = () => {
             </Text>
             <Link
               href={{
-                pathname: "/products/[id]",
+                pathname: "/tabs/(stack)/products/[id]",
                 params: { id: item.id.toString() },
               }}
               className="text-blue-600 mt-2"
